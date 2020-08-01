@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Timer</title>
+
+  <link href="css/bootstrap.css" rel="stylesheet"> 
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style = "background-color: black;">
+    <center>
+        <h2 style = "color:whitesmoke;opacity:0.6;font-size: 30px;">STOPWATCH WITH USER INPUT</h2>
+        <br><br>
+    <label style = "color:rgb(94, 139, 236);font-size: 20px;"><b>Set Time : </b></label>
+    <input type="text" name="timer" id="utimer" placeholder = "00m:00s:00cs">
+        <br><br>
+    <button onclick = "usertiming()" style = "background-color: rgb(65, 84, 124);color:rgb(229, 220, 240)"><b>SET</b></button>
+
+
+    <br>
+    <div id = "usertime" style = "color:whitesmoke;font-size: 20px;"></div>
+
+    <br><br><br>
+    <div id = "time" style = "color:whitesmoke;font-size: 37px;">00m:00s:00cs</div>
+    <br><br>
+    <button id = "btn3" onclick = "reset()" class =" glyphicon glyphicon-repeat"></button>
+    <button id = "btn1" onclick = "start()" class = "glyphicon glyphicon-play"></button>
+    <button id = "btn2" onclick = "pause()" class = "glyphicon glyphicon-pause"></button>
+    <!-- <button id = "btn1" onclick = "toggle()">Start</button> -->
+    <button id = "btn4" onclick = "stop()" class = "glyphicon glyphicon-stop"></button>
+</center>
+    <script type = "text/javascript">  
+        var cs=0 , s=0 , m=0;
+        var ID=0;
+            
+        var stopwatch = document.getElementById('time');
+                
+
+        function usertiming()
+        {
+            var set = document.getElementById('utimer').value;
+            var set1 = set.split(":");
+            var um = set1[0];
+            var us = set1[1];
+            var ucs = set1[2];
+            if( um== "" && us==undefined && ucs==undefined){
+                alert("Please set the timer!!");
+            }
+            else
+            {
+            var dis = document.getElementById('usertime').innerHTML = "<br><b style = 'color:rgb(94, 139, 236)'>Time Set to : </b>"+um+"m : "+us+"s : "+ucs+"cs";
+            }
+        }
+        function start()
+        {
+            if(!ID)
+            {
+                ID = setInterval(run,10);
+            }
+        }
+        function run()
+        {
+            var set = document.getElementById('utimer').value;
+            var set1 = set.split(":");
+            var um = set1[0];
+            var us = set1[1];
+            var ucs = set1[2];
+            if( um== "" && us==undefined && ucs==undefined){
+                alert("Timer not set!!");
+                window.stop();
+            }
+            else
+            {
+            //console.log((m < 10 ? "0"+m : m)+"m : "+(s < 10 ? "0"+s : s)+"s : "+(cs < 100 ? "0"+cs : cs)+"cs");
+            stopwatch.textContent = (m < 10 ? "0"+m : m)+"m : "+(s < 10 ? "0"+s : s)+"s : "+(cs < 10 ? "0"+cs : cs)+"cs";
+            
+                cs++;
+            
+            if(cs == 100)
+            {
+                cs = 0;
+                s++;
+            }
+            if(s == 60)
+            {
+                s = 0;
+                m++;
+            }
+            if(s == us && m == um && cs == ucs)
+            {
+                stopwatch.textContent = (m < 10 ? "0"+m : m)+"m : "+(s < 10 ? "0"+s : s)+"s : "+(cs < 10 ? "0"+cs : cs)+"cs";
+                clearInterval(ID);
+            }
+            }
+        }
+        function pause()
+        {
+            clearInterval(ID);
+            ID = false;
+        }
+        // function toggle()
+        // {
+        //     var tog = document.getElementById("btn1");
+        //     if(tog.innerHTML == "Start")
+        //     {
+        //             start();
+        //             tog.innerHTML = "Pause";
+                
+        //     }
+        //     else
+        //     {
+        //         pause();
+        //         tog.innerHTML = "Start";
+        //     }
+        // }
+        function stop()
+        {
+            clearInterval(ID);
+            ID = false;
+            m=0,s=0,cs=0;
+            stopwatch.textContent = (m < 10 ? "0"+m : m)+"m : "+(s < 10 ? "0"+s : s)+"s : "+(cs < 10 ? "0"+cs : cs)+"cs";
+        }
+        function reset()
+        {
+            stop();
+            start();
+        } 
+        
+             
+    </script>
+</body>
+
+    
+</html>

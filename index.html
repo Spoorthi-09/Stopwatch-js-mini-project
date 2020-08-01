@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch and Timer using javascript</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/clock.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/style1.css">
+</head>
+
+<body style = "background-color:black;">
+    
+    <div class = "split left">
+        <div class = "centered">
+        <a href = "timer.html" style = "text-decoration: none;"><h3 style = "color:rgb(94, 139, 236);">Timer</h3></a>
+        </div>
+    </div>
+    <div class = "split right">
+        <div class = "centered">
+        <a href = "stopwatchindex.html" style = "text-decoration: none;"><h3 style = "color:rgb(94, 139, 236)">Stopwatch</h3></a>
+        
+        </div>
+    </div>
+
+    
+    <br><br>
+    <center>
+        
+        <br><br>
+        <br>
+        <br>
+        <h1 style = "color:white;opacity: 0.2;">CLOCK</h1>
+        <br><br>
+        <div style = "color:white;" class="analog-clock">
+            <svg width="140" height="140">
+                <circle id="clock-face" cx="70" cy="70" r="65" />
+                <line id="h-hand" x1="70" y1="70" x2="70" y2="38" />
+                <line id="m-hand" x1="70" y1="70" x2="70" y2="20" />
+                <line id="s-hand" x1="70" y1="70" x2="70" y2="12" />
+                <line id="s-tail" x1="70" y1="70" x2="70" y2="56" />
+                
+            </svg>
+            <br><br>
+            <div class="time-text" style = "opacity:0.6;">
+                <span id="hr">00</span>
+                <span>:</span>
+                <span id="min">00</span>
+                <span>:</span>
+                <span id="sec">00</span>
+                <span id="suffix">--</span>
+            </div>
+        </div>
+        
+    </center>
+    
+    
+
+</body>
+</html>

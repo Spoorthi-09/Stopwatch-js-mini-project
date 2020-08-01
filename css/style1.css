@@ -1,0 +1,67 @@
+*{
+    margin:0;
+    padding:0;
+    font-family:sans-serif;
+    
+}
+
+.analog-clock{
+    width:140px;
+    height:140px;
+}
+
+#clock-face{
+    stroke:white;
+    stroke-width:3px;
+    fill:black;
+}
+
+#h-hand, #m-hand{
+    stroke:rgb(94, 139, 236);
+    stroke-linecap:round;
+}
+#s-hand, #s-tail{
+    stroke:white;
+    stroke-linecap: round;
+}
+
+#h-hand{
+    stroke-width:3px;
+}
+
+#m-hand{
+    stroke-width:2px;
+}
+
+#s-hand{
+    stroke-width:1px;
+}
+
+.time-text{
+    text-align:center;
+}
+.split{
+    height:10%;
+    width:50%;
+    position:fixed;
+    z-index:1;
+    top:0;
+    overflow-x:hidden;
+    padding-top:20px;
+    background-color: rgb(43, 48, 48);
+}
+.left{
+    left:0;
+    font-size: 23px;
+}
+.right{
+    right:0;
+    font-size: 21px;
+}
+.centered{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align: center;
+}

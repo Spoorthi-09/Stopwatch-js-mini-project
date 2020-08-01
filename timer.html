@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <link href="css/bootstrap.css" rel="stylesheet"> 
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style = "background-color: black;text-align: center;">
+    <h2 style = "color:whitesmoke;opacity:0.6;font-size: 30px;">TIMER</h2>
+    <br><br>
+<label style = "color:rgb(94, 139, 236);font-size: 20px;"><b>Set Timer : </b></label>
+<input type="text" id="utimer" placeholder = "00m:00s:00cs">
+    <br><br>
+<button onclick = "usertiming()" style = "background-color: rgb(65, 84, 124);color:rgb(229, 220, 240)"><b>SET</b></button>
+
+
+<br>
+<div id = "usertime" style = "color:whitesmoke;font-size: 20px;"></div>
+
+<br><br><br>
+<div id = "time" style = "color:whitesmoke;font-size: 37px;">00m:00s:00cs</div>
+<br><br>
+<button id = "btn3" onclick = "reset()" class =" glyphicon glyphicon-repeat"></button>
+<button id = "btn1" onclick = "start()" class = "glyphicon glyphicon-play"></button>
+
+<button id = "btn4" onclick = "stop()" class = "glyphicon glyphicon-stop"></button> 
+
+
+<script>
+    var ID =0;
+    function usertiming()
+        {
+            var set = document.getElementById('utimer').value;
+            var set1 = set.split(":");
+            var um = set1[0];
+            var us = set1[1];
+            var ucs = set1[2];
+            if( um== "" && us==undefined && ucs==undefined){
+                alert("Please set the timer!!");
+            }
+            else
+            {
+            var dis = document.getElementById('usertime').innerHTML = "<br><b style = 'color:rgb(94, 139, 236)'>Time Set to : </b>"+um+"m : "+us+"s : "+ucs+"cs";
+            }
+        }
+    function start()
+    {
+        if(!ID)
+        {
+        var counter = 0;
+
+        var set = document.getElementById('utimer').value;
+            var set1 = set.split(":");
+            var um = set1[0] * 6000;
+            console.log(um);
+            var us = set1[1] * 100;
+            console.log(us);
+            var ucs = set1[2];
+            console.log(ucs);
+            console.log(Number(um) + Number(us) + Number(ucs));
+
+        var timeleft = Number(um)+Number(us)+Number(ucs);
+
+        function convertcsec(cs)
+        {
+            var min = Math.floor((cs/6000)%100);
+            var sec = Math.floor(((cs/100)%100)%60);
+            var censec = cs % 100;
+            if(min == 0 && sec == 0 && censec == 0){
+                clearInterval(ID);
+                return "TIME UP!!";
+            }
+            return (min < 10 ? "0"+min : min)+"m : "+(sec < 10 ? "0"+sec : sec)+"s : "+(censec < 10 ? "0"+censec :censec)+"cs";
+        }
+
+        var timer = document.getElementById('time');
+        timer.innerHTML = convertcsec(timeleft - counter);
+
+        function timeIt(){
+            counter++;
+            timer.innerHTML = convertcsec(timeleft - counter);
+        }
+
+        ID = setInterval(timeIt,10);
+        }
+    }
+    function stop()
+    {
+        clearInterval(ID);
+        ID = false;
+        var min=sec=censec=0;
+        var timer = document.getElementById('time');
+        timer.textContent = (min < 10 ? "0"+min : min)+"m : "+(sec < 10 ? "0"+sec : sec)+"s : "+(censec < 10 ? "0"+censec :censec)+"cs";
+    }
+    function reset()
+    {
+        stop();
+        start();
+    }
+    
+    </script>
+    
+</body>
+</html>
